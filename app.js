@@ -10,6 +10,7 @@ const connectDB = require("./db/connect");
 require("dotenv").config();
 
 const notFound = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 // middleware]
 // express.static("./public"): Cho phép Express phục vụ các file tĩnh (HTML, CSS, JS, ảnh) từ thư mục public.
 app.use(express.static("./public"));
@@ -17,7 +18,7 @@ app.use(express.static("./public"));
 app.use(express.json());
 
 app.use("/api/v1/tasks", tasks);
-
+app.use(errorHandlerMiddleware);
 app.use(notFound);
 
 const port = 3000;
