@@ -13,6 +13,7 @@ const {
   getTask,
   updateTask,
   deleteTask,
+  editTask,
 } = require("../controllers/tasks");
 
 // Route /: (không có id trong URL)
@@ -30,6 +31,11 @@ const {
 // → Sử dụng hàm deleteTask.
 
 router.route("/").get(getAllTasks).post(createTask);
-router.route("/:id").get(getTask).patch(updateTask).delete(deleteTask);
+router
+  .route("/:id")
+  .get(getTask)
+  .patch(updateTask)
+  .delete(deleteTask)
+  .put(editTask);
 
 module.exports = router;
