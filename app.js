@@ -9,6 +9,7 @@ const connectDB = require("./db/connect");
 // dotenv: Dùng để đọc biến môi trường từ file .env. File này giúp bảo mật thông tin nhạy cảm (như chuỗi kết nối database).
 require("dotenv").config();
 
+const notFound = require("./middleware/not-found");
 // middleware]
 // express.static("./public"): Cho phép Express phục vụ các file tĩnh (HTML, CSS, JS, ảnh) từ thư mục public.
 app.use(express.static("./public"));
@@ -16,6 +17,8 @@ app.use(express.static("./public"));
 app.use(express.json());
 
 app.use("/api/v1/tasks", tasks);
+
+app.use(notFound);
 
 const port = 3000;
 
